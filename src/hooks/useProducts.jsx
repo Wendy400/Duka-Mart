@@ -1,10 +1,12 @@
 {/*This is our custom hook, it will provide access to products*/}
 
-function useProducts()
-{
+// function useProducts()
+// {
 
 
 
-}
+// }
 
-export default useProducts;
+// export default useProducts;
+
+
