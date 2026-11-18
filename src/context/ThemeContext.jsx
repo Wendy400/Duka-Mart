@@ -1,0 +1,1 @@
+{/*hold the current theme , it will help in switching between light and dark mode ensuring availability throughout the aoolication*/}
