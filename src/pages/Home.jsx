@@ -3,22 +3,18 @@ import { useProductContext } from "../context/ProductContext.jsx";
 
 const FEATURES = [
   {
-    icon: "➕",
     title: "Add products",
     text: "Create new phone listings with specs, image and pricing.",
   },
   {
-    icon: "✏️",
     title: "Edit & reprice",
     text: "Change any product's price or details at any time.",
   },
   {
-    icon: "🔍",
     title: "Search & filter",
     text: "Find products instantly by name, spec or brand.",
   },
   {
-    icon: "🗑️",
     title: "Delete products",
     text: "Remove listings that are no longer offered.",
   },
@@ -71,7 +67,6 @@ function Home() {
         <div className="admin-features-grid">
           {FEATURES.map((feature) => (
             <div key={feature.title} className="admin-feature">
-              <div className="admin-feature-icon">{feature.icon}</div>
               <h3 className="admin-feature-title">{feature.title}</h3>
               <p className="admin-feature-text">{feature.text}</p>
             </div>
