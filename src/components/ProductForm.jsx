@@ -13,7 +13,7 @@ const emptyForm = {
   stock: '',
 };
 
-export default function ProductForm({ initial, submitLabel, onSubmit }) {
+function ProductForm({ initial, submitLabel, onSubmit }) {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({ ...emptyForm, ...(initial || {}) });
@@ -109,3 +109,4 @@ export default function ProductForm({ initial, submitLabel, onSubmit }) {
     </form>
   );
 }
+export default ProductForm;
