@@ -1,108 +1,52 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import * as store from "../data/store.js";
 
 const ProductContext = createContext(null);
 
-const API_URL = "http://localhost:3001/products";
-
 export function ProductProvider({ children }) {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState(() => store.getProducts());
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Load products from the json-server backend on mount.
+  // Keep state in sync with the store (same tab + other tabs).
   useEffect(() => {
-    let cancelled = false;
-
-    async function loadProducts() {
-      try {
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error("Failed to display products");
-        }
-        const data = await response.json();
-        if (!cancelled) {
-          setProducts(data);
-          setError(null);
-        }
-      } catch (err) {
-        if (!cancelled) {
-          console.error("Error fetching products:", err);
-          setError(err.message);
-        }
-      } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
-      }
-    }
-
-    loadProducts();
-
-    return () => {
-      cancelled = true;
-    };
+    const unsubscribe = store.subscribe((next) => setProducts(next));
+    return unsubscribe;
   }, []);
 
-  // Delete a product from DukaMart.
-  async function deleteProduct(id) {
-    try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete product");
-      }
-
-      setProducts((current) => current.filter((product) => product.id !== id));
-    } catch (err) {
-      console.error("Error deleting product:", err);
-    }
-  }
-
   // Add a new product.
-  async function addProduct(product) {
+  function addProduct(product) {
     try {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to add product");
-      }
-
-      const created = await response.json();
-      setProducts((current) => [...current, created]);
+      const created = store.addProduct(product);
+      setProducts(store.getProducts());
       return created;
     } catch (err) {
       console.error("Error adding product:", err);
+      setError(err.message);
       throw err;
     }
   }
 
   // Update an existing product.
-  async function updateProduct(id, updates) {
+  function updateProduct(id, updates) {
     try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updates),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update product");
-      }
-
-      const updated = await response.json();
-      setProducts((current) =>
-        current.map((product) => (product.id === id ? updated : product))
-      );
-      return updated;
+      store.updateProduct(id, updates);
+      setProducts(store.getProducts());
     } catch (err) {
       console.error("Error updating product:", err);
+      setError(err.message);
       throw err;
+    }
+  }
+
+  // Delete a product.
+  function deleteProduct(id) {
+    try {
+      store.deleteProduct(id);
+      setProducts(store.getProducts());
+    } catch (err) {
+      console.error("Error deleting product:", err);
+      setError(err.message);
     }
   }
 
