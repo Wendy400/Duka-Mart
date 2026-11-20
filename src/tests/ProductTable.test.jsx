@@ -144,7 +144,7 @@ describe("ProductTable", () => {
   test("filters products by category", () => {
     render(<ProductTable products={products} />);
 
-    const categorySelect = screen.getByLabelText("Filter by category:");
+    const categorySelect = screen.getByLabelText("Filter by category");
 
     fireEvent.change(categorySelect, {
       target: { value: "Clothing" },
@@ -168,7 +168,7 @@ describe("ProductTable", () => {
       "Search by product name or SKU..."
     );
 
-    const categorySelect = screen.getByLabelText("Filter by category:");
+    const categorySelect = screen.getByLabelText("Filter by category");
 
     fireEvent.change(searchInput, {
       target: { value: "Leather" },
@@ -212,7 +212,7 @@ describe("ProductTable", () => {
       target: { value: "Headphones" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Clear" }));
+    fireEvent.click(screen.getByRole("button", { name: "Clear search" }));
 
     expect(searchInput).toHaveValue("");
 

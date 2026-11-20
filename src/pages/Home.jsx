@@ -3,29 +3,29 @@ import { useProductContext } from "../context/ProductContext.jsx";
 
 const FEATURES = [
   {
-    icon: "➕",
     title: "Add products",
     text: "Create new phone listings with specs, image and pricing.",
   },
   {
-    icon: "✏️",
     title: "Edit & reprice",
     text: "Change any product's price or details at any time.",
   },
   {
-    icon: "🔍",
     title: "Search & filter",
     text: "Find products instantly by name, spec or brand.",
   },
   {
-    icon: "🗑️",
     title: "Delete products",
     text: "Remove listings that are no longer offered.",
   },
 ];
 
 function Home() {
-  const { products, brands } = useProductContext();
+  const { products } = useProductContext();
+  const totalStock = products.reduce(
+    (sum, product) => sum + (Number(product.stock) || 0),
+    0
+  );
 
   return (
     <div className="admin-landing">
@@ -56,8 +56,8 @@ function Home() {
             <div className="admin-hero-stat-label">Products</div>
           </div>
           <div className="admin-hero-stat">
-            <div className="admin-hero-stat-value">{brands.length}</div>
-            <div className="admin-hero-stat-label">Brands</div>
+            <div className="admin-hero-stat-value">{totalStock}</div>
+            <div className="admin-hero-stat-label">Total Stock</div>
           </div>
         </div>
       </section>
@@ -67,7 +67,6 @@ function Home() {
         <div className="admin-features-grid">
           {FEATURES.map((feature) => (
             <div key={feature.title} className="admin-feature">
-              <div className="admin-feature-icon">{feature.icon}</div>
               <h3 className="admin-feature-title">{feature.title}</h3>
               <p className="admin-feature-text">{feature.text}</p>
             </div>
