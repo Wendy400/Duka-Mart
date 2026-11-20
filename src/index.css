@@ -356,7 +356,6 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  box-shadow: 0 18px 40px -18px rgba(37, 99, 235, 0.35);
 }
 
 .admin-hero-glow {
