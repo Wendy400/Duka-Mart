@@ -125,3 +125,41 @@
     padding: 16px 14px 48px;
   }
 }
+
+/* Top bar holding the theme toggle */
+.app-topbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+/* Dark theme overrides */
+.app-shell.theme-dark {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.app-shell.theme-dark .admin-main {
+  color: #e2e8f0;
+}
+
+.app-shell.theme-dark .admin-hero-glow {
+  background: #1e293b;
+}
+
+.app-shell.theme-dark .admin-feature,
+.app-shell.theme-dark .admin-hero-stat {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+.app-shell.theme-dark .admin-hero-title,
+.app-shell.theme-dark .admin-feature-name,
+.app-shell.theme-dark .admin-feature-title {
+  color: #f1f5f9;
+}
+
+.app-shell.theme-dark .admin-hero-text,
+.app-shell.theme-dark .admin-feature-text {
+  color: #94a3b8;
+}
