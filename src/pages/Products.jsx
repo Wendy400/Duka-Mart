@@ -1,5 +1,33 @@
+import { useState } from "react";
+import SearchBar from "../components/SearchBar";
+import CategoryFilter from "../components/CategoryFilter";
+
 
 function Products({ products }) {
+
+  const [searchTerm, setSearchTerm] = useState("");
+const [selectedCategory, setSelectedCategory] = useState("All");
+
+// Get all unique product categories
+const categories = [
+  ...new Set(products.map((product) => product.category)),
+];
+
+// Filter products based on search and category
+const filteredProducts = products.filter((product) => {
+  const searchText = searchTerm.toLowerCase();
+
+  const matchesSearch =
+    product.name.toLowerCase().includes(searchText) ||
+    product.sku.toLowerCase().includes(searchText);
+
+  const matchesCategory =
+    selectedCategory === "All" ||
+    product.category === selectedCategory;
+
+  return matchesSearch && matchesCategory;
+});
+
 
   // Determine the stock status of each product.
   // These conditions are for displaying the status only.
@@ -53,25 +81,18 @@ function Products({ products }) {
       {/* Search and filter UI - functionality comes later */}
       <div className="bg-white p-4 rounded-xl shadow-sm flex flex-col sm:flex-row gap-4">
 
-        <input
-          type="text"
-          placeholder="Search products..."
-          className="border border-gray-200 rounded-lg px-4 py-3 flex-1 outline-none focus:ring-2 focus:ring-blue-500"
-        />
+  <SearchBar
+    searchTerm={searchTerm}
+    onSearchChange={setSearchTerm}
+  />
 
-        <select
-          className="border border-gray-200 rounded-lg px-4 py-3 outline-none"
-          defaultValue="all"
-        >
-          <option value="all">All Categories</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Footwear">Footwear</option>
-          <option value="Home & Kitchen">Home & Kitchen</option>
-          <option value="Clothing">Clothing</option>
-          <option value="Bags">Bags</option>
-        </select>
+  <CategoryFilter
+    categories={categories}
+    selectedCategory={selectedCategory}
+    onCategoryChange={setSelectedCategory}
+  />
 
-      </div>
+</div>
 
       {/* Product inventory table */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -82,7 +103,7 @@ function Products({ products }) {
           </h2>
 
           <p className="text-sm text-gray-500 mt-1">
-            {products.length} products available
+            {filteredProducts.length} products available
           </p>
         </div>
 
@@ -101,74 +122,79 @@ function Products({ products }) {
                 <th className="p-4 font-semibold">Status</th>
               </tr>
             </thead>
+<tbody className="divide-y divide-gray-100">
 
-            <tbody className="divide-y divide-gray-100">
+  {filteredProducts.length > 0 ? (
+    filteredProducts.map((product) => {
+      const status = getStockStatus(product.stock);
 
-              {products.map(product => {
+      return (
+        <tr
+          key={product.id}
+          className="hover:bg-gray-50 transition-colors"
+        >
+          {/* Product image and name */}
+          <td className="p-4">
+            <div className="flex items-center gap-3 min-w-64">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-12 h-12 rounded-lg object-cover"
+              />
 
-                // Get the correct visual stock label and color.
-                const status = getStockStatus(product.stock);
+              <div>
+                <p className="font-medium text-gray-800">
+                  {product.name}
+                </p>
 
-                return (
-                  <tr
-                    key={product.id}
-                    className="hover:bg-gray-50 transition-colors"
-                  >
+                <p className="text-xs text-gray-400 mt-1">
+                  ID: {product.id}
+                </p>
+              </div>
+            </div>
+          </td>
 
-                    {/* Product image and name */}
-                    <td className="p-4">
-                      <div className="flex items-center gap-3 min-w-64">
+          {/* SKU */}
+          <td className="p-4 text-sm text-gray-600">
+            {product.sku}
+          </td>
 
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-12 h-12 rounded-lg object-cover"
-                        />
+          {/* Category */}
+          <td className="p-4 text-sm text-gray-600">
+            {product.category}
+          </td>
 
-                        <div>
-                          <p className="font-medium text-gray-800">
-                            {product.name}
-                          </p>
+          {/* Price */}
+          <td className="p-4 text-sm font-medium text-gray-800">
+            KSh {product.price.toLocaleString()}
+          </td>
 
-                          <p className="text-xs text-gray-400 mt-1">
-                            ID: {product.id}
-                          </p>
-                        </div>
+          {/* Stock */}
+          <td className="p-4 text-sm text-gray-600">
+            {product.stock}
+          </td>
 
-                      </div>
-                    </td>
+          {/* Stock status */}
+          <td className="p-4">
+            <span
+              className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${status.style}`}
+            >
+              {status.label}
+            </span>
+          </td>
 
-                    <td className="p-4 text-sm text-gray-600">
-                      {product.sku}
-                    </td>
+        </tr>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="6" className="p-8 text-center text-gray-500">
+        No products found.
+      </td>
+    </tr>
+  )}
 
-                    <td className="p-4 text-sm text-gray-600">
-                      {product.category}
-                    </td>
-
-                    <td className="p-4 text-sm font-medium text-gray-800">
-                      KSh {product.price.toLocaleString()}
-                    </td>
-
-                    <td className="p-4 text-sm text-gray-600">
-                      {product.stock}
-                    </td>
-
-                    {/* Stock status badge */}
-                    <td className="p-4">
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${status.style}`}
-                      >
-                        {status.label}
-                      </span>
-                    </td>
-
-                  </tr>
-                );
-              })}
-
-            </tbody>
-
+</tbody>
           </table>
 
         </div>
