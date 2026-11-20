@@ -1,9 +1,8 @@
+import { useProductContext } from '../context/ProductContext.jsx';
 import ProductForm from '../components/ProductForm.jsx';
 
 export default function AddProducts() {
-  async function handleAddProduct(product) {
-    console.log('Add product payload:', product);
-  }
+  const { addProduct } = useProductContext();
 
   return (
     <>
@@ -15,7 +14,7 @@ export default function AddProducts() {
       </div>
 
       <div className="admin-form-page">
-        <ProductForm submitLabel="Add product" onSubmit={handleAddProduct} />
+        <ProductForm submitLabel="Add product" onSubmit={addProduct} />
       </div>
     </>
   );
