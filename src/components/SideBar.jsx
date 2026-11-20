@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
 
+const linkClass = ({ isActive }) =>
+  "sidebar-link" + (isActive ? " active" : "");
+
 function SideBar() {
   return (
     <aside className="sidebar">
@@ -11,31 +14,15 @@ function SideBar() {
       </div>
 
       <nav className="sidebar-links">
-        <NavLink
-          to="/"
-          end
-          className={({ isActive }) =>
-            "sidebar-link" + (isActive ? " active" : "")
-          }
-        >
+        <NavLink to="/" end className={linkClass}>
           Dashboard
         </NavLink>
 
-        <NavLink
-          to="/products"
-          className={({ isActive }) =>
-            "sidebar-link" + (isActive ? " active" : "")
-          }
-        >
+        <NavLink to="/products" end className={linkClass}>
           Products
         </NavLink>
 
-        <NavLink
-          to="/products/new"
-          className={({ isActive }) =>
-            "sidebar-link" + (isActive ? " active" : "")
-          }
-        >
+        <NavLink to="/products/new" end className={linkClass}>
           Add Product
         </NavLink>
       </nav>
