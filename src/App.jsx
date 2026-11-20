@@ -1,25 +1,14 @@
 
-//  import './App.css'
-
-// function App() {
-
-//   return (
-//     <div className="flex items-center justify-center h-screen bg-blue-100">
-//       <h1 className="text-3xl font-bold text-blue-600 underline">
-//         HELLO WOLRD
-//       </h1>
-//     </div>
-//   )
-// }
-
-// export default App
-
-import { useState, useEffect } from "react";
+import { useState, useEffect , useContext} from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import SideBar from "./components/SideBar";
+import ThemeToggle from "./components/ThemeToggle";
+import { ThemeContext } from "./context/ThemeContext";
+
+
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -58,13 +47,18 @@ async function handleDelete(id) {
   }
 }
 
+const { theme } = useContext(ThemeContext);
+
 
 
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className={`flex min-h-screen ${
+        theme === "dark" ? "bg-gray-900 text-white"  : "bg-gray-100 text-gray-900" }`}
+    >
 
       <SideBar/>
+      <ThemeToggle/>
 
       <main>
         <Routes>
