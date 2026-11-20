@@ -44,6 +44,20 @@
   color: #fff;
 }
 
+.sidebar-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  flex: 0 0 auto;
+}
+
 .sidebar-brand img {
   width: 40px;
   height: 40px;
@@ -77,6 +91,14 @@
   color: #cbd5e1;
   font-size: 14px;
   font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar-icon {
+  font-size: 15px;
+  width: 18px;
+  text-align: center;
+  opacity: 0.85;
 }
 
 .sidebar-link:hover {
@@ -86,6 +108,19 @@
 
 .sidebar-link.active {
   background: #2563eb;
+  color: #fff;
+}
+
+/* CTA link — filled button like sanyu's "Apply Now" */
+.sidebar-cta {
+  margin-top: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+}
+
+.sidebar-cta:hover {
+  background: #1d4ed8;
   color: #fff;
 }
 
