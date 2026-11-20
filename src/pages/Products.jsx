@@ -71,7 +71,7 @@ function Products() {
       </div>
 
       {/* Search and filter UI */}
-      <div className="bg-white p-4 rounded-xl shadow-sm flex flex-col sm:flex-row gap-4">
+      <div className="admin-controls">
         <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
         <CategoryFilter
