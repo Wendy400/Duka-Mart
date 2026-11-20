@@ -52,8 +52,8 @@ function ProductForm({ initial, submitLabel, onSubmit }) {
         stock: Number(form.stock),
       });
       navigate('/products');
-    } catch {
-      setError('Could not save the product. Is the API running?');
+    } catch (err) {
+      setError(err?.message || 'Could not save the product. Please try again.');
     }
   }
 
@@ -71,12 +71,19 @@ function ProductForm({ initial, submitLabel, onSubmit }) {
         </label>
         <label className="admin-field">
           <span>Category</span>
-          <select name="category" value={form.category} onChange={handleChange}>
-            <option value="">Choose a category</option>
+          <input
+            type="text"
+            name="category"
+            value={form.category}
+            onChange={handleChange}
+            placeholder="e.g. Electronics"
+            list="category-options"
+          />
+          <datalist id="category-options">
             {CATEGORIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
+              <option key={c} value={c} />
             ))}
-          </select>
+          </datalist>
         </label>
       </div>
 
