@@ -365,7 +365,6 @@ a {
   right: -80px;
   width: 340px;
   height: 340px;
-  background: radial-gradient(circle, rgba(96, 165, 250, 0.55), transparent 70%);
   pointer-events: none;
 }
 
