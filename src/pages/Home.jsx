@@ -1,30 +1,32 @@
 import { Link } from "react-router-dom";
-//import {useProductContext} from "../context/ProductContext.jsx";
+import { useProductContext } from "../context/ProductContext.jsx";
+
 const FEATURES = [
   {
-    icon: "",
+    icon: "➕",
     title: "Add products",
-    text: "Add products",
     text: "Create new phone listings with specs, image and pricing.",
   },
   {
-    icon: "",
+    icon: "✏️",
     title: "Edit & reprice",
     text: "Change any product's price or details at any time.",
   },
   {
-    icon: "",
+    icon: "🔍",
     title: "Search & filter",
     text: "Find products instantly by name, spec or brand.",
   },
   {
-    icon: "",
+    icon: "🗑️",
     title: "Delete products",
     text: "Remove listings that are no longer offered.",
   },
 ];
+
 function Home() {
   const { products, brands } = useProductContext();
+
   return (
     <div className="admin-landing">
       <section className="admin-hero">
@@ -34,14 +36,14 @@ function Home() {
               Welcome to <span>Duka Mart</span>
             </h1>
             <p className="admin-hero-text">
-              Your control center for DukaMart online store.Add products change
-              prices,keep stock up to date and find anything in seconds.
+              Your control center for DukaMart online store. Add products, change
+              prices, keep stock up to date and find anything in seconds.
             </p>
             <div className="admin-hero-actions">
-              <Link to="" className="admin-hero-btn-primary">
+              <Link to="/products" className="admin-hero-btn-primary">
                 Manage products
               </Link>
-              <Link to="" className="admin-hero-btn">
+              <Link to="/products/new" className="admin-hero-btn">
                 Add a product
               </Link>
             </div>
@@ -65,8 +67,8 @@ function Home() {
           {FEATURES.map((feature) => (
             <div key={feature.title} className="admin-feature">
               <div className="admin-feature-icon">{feature.icon}</div>
-              <div className="admin-feature-icon">{feature.icon}</div>
-              <div className="admin-feature-icon">{feature.icon}</div>
+              <h3 className="admin-feature-name">{feature.title}</h3>
+              <p className="admin-feature-text">{feature.text}</p>
             </div>
           ))}
         </div>
@@ -74,4 +76,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;

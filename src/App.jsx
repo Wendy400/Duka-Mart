@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import NavBar from './components/NavBar.jsx';
+import SideBar from './components/SideBar.jsx';
 import Home from './pages/Home.jsx';
 import Products from './pages/Products.jsx';
 import AddProducts from './pages/AddProducts.jsx';
@@ -9,7 +9,7 @@ import './App.css';
 export default function App() {
   return (
     <div className="app-shell">
-      <NavBar />
+      <SideBar />
       <main className="admin-main">
         <Routes>
           <Route path="/" element={<Home />} />
