@@ -63,19 +63,19 @@ describe('Home page', () => {
     expect(stat).toHaveTextContent('3');
   });
 
-  it('shows the brands count from context', () => {
-    mockContext.brands = [{ id: 1 }, { id: 2 }];
+  it('shows the total stock from context', () => {
+    mockContext.products = [{ id: 1, stock: 5 }, { id: 2, stock: 7 }];
     renderHome();
-    const stat = screen.getByText('Brands').closest('.admin-hero-stat');
-    expect(stat).toHaveTextContent('2');
+    const stat = screen.getByText('Total Stock').closest('.admin-hero-stat');
+    expect(stat).toHaveTextContent('12');
   });
 
   it('shows zero counts when context is empty', () => {
     renderHome();
     const productsStat = screen.getByText('Products').closest('.admin-hero-stat');
-    const brandsStat = screen.getByText('Brands').closest('.admin-hero-stat');
+    const stockStat = screen.getByText('Total Stock').closest('.admin-hero-stat');
     expect(productsStat).toHaveTextContent('0');
-    expect(brandsStat).toHaveTextContent('0');
+    expect(stockStat).toHaveTextContent('0');
   });
 
   it('renders the features section heading', () => {

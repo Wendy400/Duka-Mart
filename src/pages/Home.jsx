@@ -25,7 +25,11 @@ const FEATURES = [
 ];
 
 function Home() {
-  const { products, brands } = useProductContext();
+  const { products } = useProductContext();
+  const totalStock = products.reduce(
+    (sum, product) => sum + (Number(product.stock) || 0),
+    0
+  );
 
   return (
     <div className="admin-landing">
@@ -56,8 +60,8 @@ function Home() {
             <div className="admin-hero-stat-label">Products</div>
           </div>
           <div className="admin-hero-stat">
-            <div className="admin-hero-stat-value">{brands.length}</div>
-            <div className="admin-hero-stat-label">Brands</div>
+            <div className="admin-hero-stat-value">{totalStock}</div>
+            <div className="admin-hero-stat-label">Total Stock</div>
           </div>
         </div>
       </section>
