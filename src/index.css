@@ -350,13 +350,13 @@ a {
   overflow: hidden;
   border-radius: 22px;
   padding: 40px;
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #2563eb 100%);
-  color: #fff;
+  background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 55%, #60a5fa 100%);
+  color: #0f172a;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  box-shadow: 0 18px 40px -18px rgba(37, 99, 235, 0.55);
+  box-shadow: 0 18px 40px -18px rgba(37, 99, 235, 0.35);
 }
 
 .admin-hero-glow {
@@ -382,7 +382,7 @@ a {
 }
 
 .admin-hero-title span {
-  background: linear-gradient(90deg, #93c5fd, #ffffff);
+  background: linear-gradient(90deg, #1d4ed8, #2563eb);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -391,7 +391,7 @@ a {
 .admin-hero-text {
   font-size: 15px;
   line-height: 1.6;
-  color: #dbeafe;
+  color: #1e3a8a;
   margin-bottom: 24px;
 }
 
@@ -406,24 +406,24 @@ a {
   font-weight: 700;
   padding: 12px 22px;
   border-radius: 11px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  background: rgba(255, 255, 255, 0.5);
+  color: #1e3a8a;
   transition: all 0.15s;
 }
 
 .admin-hero-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .admin-hero-btn.primary {
-  background: #fff;
-  border-color: #fff;
-  color: #1e3a8a;
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
 }
 
 .admin-hero-btn.primary:hover {
-  background: #eff6ff;
+  background: #1d4ed8;
 }
 
 .admin-hero-stats {
@@ -435,8 +435,8 @@ a {
 }
 
 .admin-hero-stat {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(37, 99, 235, 0.2);
   border-radius: 16px;
   padding: 20px 24px;
   text-align: center;
@@ -448,13 +448,14 @@ a {
   font-size: 30px;
   font-weight: 800;
   line-height: 1;
+  color: #1e3a8a;
 }
 
 .admin-hero-stat-label {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  color: #bfdbfe;
+  color: #1d4ed8;
   margin-top: 8px;
 }
 
