@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SideBar from './components/SideBar.jsx';
-import ThemeToggle from './components/ThemeToggle.jsx';
 import Home from './pages/Home.jsx';
 import Products from './pages/Products.jsx';
 import AddProducts from './pages/AddProducts.jsx';
@@ -15,17 +14,16 @@ export default function App() {
   return (
     <div className={`app-shell ${theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
       <SideBar />
-      <main className="admin-main">
-        <div className="app-topbar">
-          <ThemeToggle />
-        </div>
+      <main className="flex-1 pt-9 px-9">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/new" element={<AddProducts />} />
           <Route path="/products/:id/edit" element={<EditProducts />} />
         </Routes>
+
       </main>
+        
     </div>
   );
 }

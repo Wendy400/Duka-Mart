@@ -1,4 +1,5 @@
-// Search input for filtering products by name or SKU.
+ // Search input for filtering products by name or SKU.
+
 function SearchBar({ searchTerm, onSearchChange }) {
   return (
     <div className="search-bar">

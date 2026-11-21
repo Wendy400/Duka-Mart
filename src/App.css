@@ -1,16 +1,56 @@
+
+
+
+
+
+
+/* =================================
+   APPLICATION THEMES
+================================= */
+
 .app-shell {
+  --bg-primary: #f1f5f9;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e2e8f0;
+
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+
+  --border-color: #e2e8f0;
+
   min-height: 100vh;
   display: flex;
-  background: #f1f5f9;
-  color: #0f172a;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.app-shell .admin-main {
+.app-shell.theme-dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+
+  --border-color: #334155;
+}
+
+/* =================================
+   MAIN CONTENT
+================================= */
+
+/* .app-shell .admin-main {
   flex: 1;
   min-width: 0;
   max-width: 1200px;
   margin: 0 auto;
   padding: 28px 28px 60px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .page-head {
@@ -20,7 +60,11 @@
   gap: 16px;
   margin-bottom: 20px;
   flex-wrap: wrap;
-}
+} */
+
+/* =================================
+   SIDEBAR
+================================= */
 
 .sidebar {
   width: 240px;
@@ -89,8 +133,86 @@
   color: #fff;
 }
 
-@media (max-width: 720px) {
+/* =================================
+   THEME-AWARE CONTENT
+================================= */
 
+/* Cards and panels */
+.app-shell .admin-card,
+.app-shell .admin-feature,
+.app-shell .admin-hero-stat {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+/* Headings */
+.app-shell .admin-page-title,
+.app-shell .admin-hero-title,
+.app-shell .admin-feature-name,
+.app-shell .admin-feature-title {
+  color: var(--text-primary);
+}
+
+/* Supporting text */
+.app-shell .admin-page-sub,
+.app-shell .admin-hero-text,
+.app-shell .admin-feature-text {
+  color: var(--text-secondary);
+}
+
+/* Tables */
+.app-shell table {
+  color: var(--text-primary);
+}
+
+.app-shell th {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.app-shell td {
+  border-color: var(--border-color);
+}
+
+/* Inputs */
+.app-shell input,
+.app-shell select,
+.app-shell textarea {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.app-shell input::placeholder,
+.app-shell textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+/* =================================
+   SMOOTH THEME TRANSITIONS
+================================= */
+
+.app-shell .admin-card,
+.app-shell .admin-feature,
+.app-shell .admin-hero-stat,
+.app-shell input,
+.app-shell select,
+.app-shell textarea,
+.app-shell table,
+.app-shell th,
+.app-shell td {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* =================================
+   RESPONSIVE LAYOUT
+================================= */
+
+@media (max-width: 720px) {
   .app-shell {
     flex-direction: column;
   }
@@ -126,40 +248,10 @@
   }
 }
 
-/* Top bar holding the theme toggle */
+/* Top bar, if used elsewhere */
 .app-topbar {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 16px;
 }
 
-/* Dark theme overrides */
-.app-shell.theme-dark {
-  background: #0f172a;
-  color: #e2e8f0;
-}
-
-.app-shell.theme-dark .admin-main {
-  color: #e2e8f0;
-}
-
-.app-shell.theme-dark .admin-hero-glow {
-  background: #1e293b;
-}
-
-.app-shell.theme-dark .admin-feature,
-.app-shell.theme-dark .admin-hero-stat {
-  background: #1e293b;
-  color: #e2e8f0;
-}
-
-.app-shell.theme-dark .admin-hero-title,
-.app-shell.theme-dark .admin-feature-name,
-.app-shell.theme-dark .admin-feature-title {
-  color: #f1f5f9;
-}
-
-.app-shell.theme-dark .admin-hero-text,
-.app-shell.theme-dark .admin-feature-text {
-  color: #94a3b8;
-}
