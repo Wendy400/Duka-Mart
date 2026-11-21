@@ -1,6 +1,6 @@
-@import "tailwindcss";
+ @import "tailwindcss";
 
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -525,6 +525,7 @@ a {
 }
 
 /* ===== Search & filter controls ===== */
+
 .search-bar {
   position: relative;
   display: flex;
@@ -661,4 +662,31 @@ a {
   border-radius: 14px;
   padding: 14px;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+}  
+
+
+
+/* Light theme */
+.theme-light {
+  background-color: #f8fafc;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+/* Dark theme */
+.theme-dark {
+  background-color: #0f172a;
+  color: #f1f5f9;
+  min-height: 100vh;
+}
+
+/* Main content */
+.theme-dark .admin-main {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+/* Top navigation */
+.theme-dark .app-topbar {
+  background-color: #0f172a;
 }

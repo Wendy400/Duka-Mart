@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Home from './Home.jsx';
+import Home from '../pages/Home.jsx';
 
 // Home calls useProductContext() but the import is commented out in the source.
 // We mock the module so the hook resolves, and control the data it returns.
