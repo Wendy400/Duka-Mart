@@ -1,16 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Wireless Active Noise-Cancelling Headphones",
-      "sku": "DM-ELC-01",
-      "category": "Electronics",
-      "price": 2500,
-      "description": "Over-ear Bluetooth 5.3 headphones with 40-hour battery life and rich studio sound.",
-      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
-      "stock": 18
-    },
-    {
       "id": 2,
       "name": "GaN 65W Fast Charging Wall Adapter",
       "sku": "DM-ELC-02",
